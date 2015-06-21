@@ -36,3 +36,25 @@ class Unit:
         for x in input_stream:
             a.append(self.run_once(x))
         return a
+
+    def backpropragate(self, output_values, correct_values):
+        error = np.subtract(correct_values, output_values)
+        diff = backpropragate_output_axons(error)
+        diff = backpropragate_hidden_axons(diff)
+
+    def backpropragate_output_axons(self, errors):
+        diff = np.dot(errors, self.hidden_output_axons.transpose())
+        diff = util.tanh_derivative_array(diff)
+        self.hidden_output_axons = np.add(self.hidden_output_axons, diff)
+        return diff
+
+    def backpropragate_hidden_axons(self, diff):
+        for i in range(0, self.hidden_depth-1):
+            d = self.hidden_depth - 1 - i
+            layer = self.hidden_hidden_axons[d, :, :]
+            diff = np.dot(diff, layer.transpose())
+            diff = util.tanh_derivative_array(diff)
+            self.hidden_hidden_axons[d, :, :] = np.add(layer, diff)
+
+    def backpropragate_input_axons(self, diff):
+        
