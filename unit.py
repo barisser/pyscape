@@ -3,7 +3,7 @@ import util
 
 class Unit:
     def __init__(self, input_n, output_n, hidden_width, hidden_depth):
-        self.inputs = np.zeros((1,input_n))
+        self.inputs = np.zeros((1, input_n))
         self.hidden = np.zeros((hidden_width, hidden_depth))
         self.input_hidden_axons = util.random_array_range(input_n, hidden_width)
         self.hidden_hidden_axons = util.random_array_range3d(hidden_depth-1, hidden_width, hidden_width)
