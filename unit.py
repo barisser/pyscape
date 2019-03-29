@@ -1,6 +1,7 @@
 import numpy as np
 import util
 
+
 class Unit:
     def __init__(self, input_n, output_n, hidden_width, hidden_depth):
         self.inputs = np.zeros((1,input_n))
