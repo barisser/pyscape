@@ -57,4 +57,4 @@ class Unit:
             self.hidden_hidden_axons[d, :, :] = np.add(layer, diff)
 
     def backpropragate_input_axons(self, diff):
-        
+
